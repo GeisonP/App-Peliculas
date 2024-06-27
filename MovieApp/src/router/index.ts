@@ -37,7 +37,8 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/movie/:movieId',
     name: 'MovieDetail',
-    component: MovieDetail
+    component: MovieDetail,
+    props: true
   }
 ];
 

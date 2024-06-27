@@ -3,7 +3,7 @@
     <ion-header>
       <ion-toolbar>
         <ion-buttons slot="start">
-          <ion-button @click="goHome">Ir al inicio</ion-button>
+          <ion-button href="/">Ir al inicio</ion-button>
         </ion-buttons>
         <ion-title>Populares</ion-title>
       </ion-toolbar>
@@ -11,7 +11,7 @@
     <ion-content>
       <ion-grid>
         <ion-row>
-          <ion-col size="12" size-md="6" size-lg="4" v-for="movie in movies" :key="movie.id" @click="viewMovieDetail(movie.id)">
+          <ion-col size="12" size-md="6" size-lg="4" v-for="movie in movies" :key="movie.id" :href="`/movie/${movie.id}`">
             <ion-card>
               <ion-img :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`"></ion-img>
               <ion-card-content>
@@ -27,15 +27,17 @@
           {{ page }}
         </ion-button>
       </div>
-      <ion-loading :is-open="loading" message="Loading movie details..." duration="5000"></ion-loading>
     </ion-content>
   </ion-page>
 </template>
 
 <script>
 import api from '@/services/api';
-
+import { IonHeader, IonToolbar, IonButtons, IonTitle, IonGrid, IonButton } from '@ionic/vue';
 export default {
+  components: {
+    IonHeader, IonToolbar, IonButtons, IonTitle, IonGrid, IonButton
+  },
   data() {
     return {
       movies: [],
@@ -69,13 +71,8 @@ export default {
       await this.fetchMovies();
     },
     async viewMovieDetail(movieId) {
-      this.loading = true;
-
-      setTimeout(() => {
-        this.loading = false;
         this.$router.push({ name: 'MovieDetail', params: { movieId } });
-      }, 5000); // 5000 ms = 5 segundos
-    },
+      }, 
     goHome() {
       this.$router.push({ name: 'Home' });
     }

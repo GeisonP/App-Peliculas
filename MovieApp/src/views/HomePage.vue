@@ -113,7 +113,7 @@ export default {
       }
     },
     viewMovieDetail(movieId) {
-      this.$router.push({ name: 'MovieDetail', params: { movieId } });
+      this.$router.push({ name: 'MovieDetail', params: { movieId: movieId } });
     }
   }
 };

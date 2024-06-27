@@ -3,7 +3,7 @@
     <ion-header>
       <ion-toolbar>
         <ion-buttons slot="start">
-          <ion-button @click="goHome">Regresar</ion-button>
+          <ion-button href="/">Inicio</ion-button>
         </ion-buttons>
         <ion-title>Detalle</ion-title>
       </ion-toolbar>
@@ -57,8 +57,12 @@
   
 <script>
 import api from '@/services/api';
+import { IonHeader, IonToolbar, IonButtons, IonTitle, IonButton } from '@ionic/vue';
 
 export default {
+  components: {
+    IonHeader, IonToolbar, IonButtons, IonTitle, IonButton
+  },
   data() {
     return {
       movie: {},
